@@ -1,0 +1,7 @@
+# Soforthilfe Zentrale (Handy-Fassung)
+
+Passwortgeschützte Web-App der Soforthilfe-Firmenzentrale. Die App ist in `index.html`
+mit AES-256-GCM verschlüsselt (Schlüssel aus dem Passwort per PBKDF2-SHA-256, 600.000 Runden).
+Ohne Passwort ist nur die Anmeldeseite sichtbar. Alle App-Daten bleiben auf dem eigenen Gerät.
+
+Erzeugt mit `npm run phone && npm run phone:locked` im Hauptprojekt.
