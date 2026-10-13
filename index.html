@@ -32,7 +32,7 @@
   <p>Geschützter Zugang. Bitte Passwort eingeben.</p>
   <input type="text" name="username" value="soforthilfe" autocomplete="username" hidden>
   <label for="pw">Passwort</label>
-  <input id="pw" type="password" autocomplete="current-password" required>
+  <input id="pw" type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" required>
   <label class="remember"><input id="remember" type="checkbox" checked> Auf diesem Gerät angemeldet bleiben</label>
   <button id="go" type="submit">Öffnen</button>
   <div id="err" class="err" role="alert"></div>
@@ -55,7 +55,8 @@
   const go = document.getElementById('go');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const pw = document.getElementById('pw').value.trim();
+    // iPhone: Großbuchstabe am Anfang, Leerzeichen und lange Striche von der Autokorrektur ausgleichen
+    const pw = document.getElementById('pw').value.normalize('NFKC').toLowerCase().replace(/[\u2010-\u2015\u2212]/g, '-').replace(/\s+/g, '');
     go.disabled = true; err.textContent = ''; go.textContent = 'Wird geöffnet …';
     try {
       await open(pw);
